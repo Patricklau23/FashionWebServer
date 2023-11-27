@@ -19,11 +19,12 @@ app.post("/pay", async (req, res) => {
       const { amount, token } = req.body;
   
       await Stripe.charges.create({
-        source: token, // Ensure that token is a string representing the token ID
+        source: token.id, // Ensure that token is a string representing the token ID
         amount: amount,
         currency: "usd",
       });
-  
+    
+
       // Send a success response
       res.status(200).send("Payment successful");
     } catch (error) {
